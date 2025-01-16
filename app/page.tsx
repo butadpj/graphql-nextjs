@@ -30,12 +30,12 @@ export default async function Home() {
       <main className={styles.main}>
         <h1>Hello world</h1>
         {/* <HydrationBoundary state={dehydrate(queryClient)}> */}
-        <CountryLists />
+        {/* <CountryLists /> */}
         {/* </HydrationBoundary> */}
         {/* <Suspense fallback={"Loading..."}> */}
-        {/* <PreloadQuery query={countryListsQuery}>
+        <PreloadQuery query={countryListsQuery}>
           {({ data }) => <CountryLists initialData={data} />}
-        </PreloadQuery> */}
+        </PreloadQuery>
         {/* </Suspense> */}
       </main>
     </div>
