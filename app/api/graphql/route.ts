@@ -250,8 +250,6 @@ const server = new ApolloServer({
   resolvers,
 });
 
-const handler = startServerAndCreateNextHandler<NextRequest>(server, {
-  context: async (req) => ({ req }),
-});
+const handler = startServerAndCreateNextHandler<NextRequest>(server);
 
 export { handler as GET, handler as POST };
