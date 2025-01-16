@@ -12,7 +12,7 @@ export default function CountryLists({ initialData = null }) {
   const { data } = useQuery({
     queryKey: ["countries"],
     queryFn: async () =>
-      request("http://localhost:3000/api/graphql", countryListsQuery),
+      request(`${process.env.NEXT_PUBLIC_HOST}/api/graphql`, countryListsQuery),
     initialData,
   });
 

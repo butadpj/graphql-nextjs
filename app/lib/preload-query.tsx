@@ -19,9 +19,12 @@ export default async function PreloadQuery({
   children,
 }: PreloadQueryProps) {
   // const client = createApolloClient();
-  const client = new GraphQLClient("http://localhost:3000/api/graphql", {
-    cache: "force-cache",
-  });
+  const client = new GraphQLClient(
+    `${process.env.NEXT_PUBLIC_HOST}/api/graphql`,
+    {
+      cache: "force-cache",
+    }
+  );
 
   // Fetch data on the server
   // const { data } = await client.query({
