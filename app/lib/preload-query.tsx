@@ -20,10 +20,7 @@ export default async function PreloadQuery({
 }: PreloadQueryProps) {
   // const client = createApolloClient();
   const client = new GraphQLClient(
-    `${process.env.NEXT_PUBLIC_HOST}/api/graphql`,
-    {
-      cache: "force-cache",
-    }
+    `${process.env.NEXT_PUBLIC_HOST}/api/graphql`
   );
 
   // Fetch data on the server
@@ -33,6 +30,8 @@ export default async function PreloadQuery({
   // });
 
   const data = await client.request(query);
+
+  console.log(data);
 
   // // Extract the cache state after fetching
   // const initialApolloState = client.cache.extract();

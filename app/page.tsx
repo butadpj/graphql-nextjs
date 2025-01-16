@@ -10,10 +10,10 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import request from "graphql-request";
+import request, { gql } from "graphql-request";
 
 // export const dynamic = "force-dynamic";
-export const revalidate = 60;
+// export const revalidate = 60;
 
 export default async function Home() {
   // const queryClient = new QueryClient();
@@ -30,12 +30,12 @@ export default async function Home() {
       <main className={styles.main}>
         <h1>Hello world</h1>
         {/* <HydrationBoundary state={dehydrate(queryClient)}> */}
-          {/* <CountryLists /> */}
+        {/* <CountryLists /> */}
         {/* </HydrationBoundary> */}
         {/* <Suspense fallback={"Loading..."}> */}
-          <PreloadQuery query={countryListsQuery}>
-            {({ data }) => <CountryLists initialData={data} />}
-          </PreloadQuery>
+        <PreloadQuery query={countryListsQuery}>
+          {({ data }) => <CountryLists initialData={data} />}
+        </PreloadQuery>
         {/* </Suspense> */}
       </main>
     </div>
