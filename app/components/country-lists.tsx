@@ -22,9 +22,10 @@ export default function CountryLists({
     return "Loading...";
   }
 
-  //@ts-ignore
+  
   return (
     <ul>
+      {/* @ts-ignore */}
       {data?.countries.map((country: any) => (
         <li key={country.code}>{country.name}</li>
       ))}
