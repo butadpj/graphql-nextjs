@@ -14,16 +14,16 @@ import request, { gql } from "graphql-request";
 import LatestCountry from "./components/latest-country";
 
 // export const dynamic = "force-dynamic";
-export const revalidate = 10;
+export const revalidate = 30;
 
 export default async function Home() {
-  const queryClient = new QueryClient();
+  // const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: ["countries"],
-    queryFn: async () =>
-      request(`${process.env.NEXT_PUBLIC_HOST}/api/graphql`, countryListsQuery),
-  });
+  // await queryClient.prefetchQuery({
+  //   queryKey: ["countries"],
+  //   queryFn: async () =>
+  //     request(`${process.env.NEXT_PUBLIC_HOST}/api/graphql`, countryListsQuery),
+  // });
 
   return (
     <div className={styles.page}>
@@ -62,9 +62,27 @@ export default async function Home() {
           <LatestCountry />
         </Suspense>
 
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <CountryLists />
-        </HydrationBoundary>
+        {/* <HydrationBoundary state={dehydrate(queryClient)}> */}
+          <Suspense
+            fallback={
+              <div
+                style={{
+                  padding: "1rem",
+                  background: "#36ff732c",
+                  display: "flex",
+                  flexDirection: "column",
+                  margin: "0 auto",
+                  width: "314px",
+                  height: "1500px",
+                  opacity: "0.5",
+                  animation: "skeleton-loading 1.5s infinite ease-in-out",
+                }}
+              ></div>
+            }
+          >
+            <CountryLists />
+          </Suspense>
+        {/* </HydrationBoundary> */}
 
         {/* <Suspense fallback={"Loading..."}>
           <PreloadQuery query={countryListsQuery}>

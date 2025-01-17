@@ -5,6 +5,7 @@ import MutateCountry from "../components/mutate-country";
 import { Suspense } from "react";
 
 // export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 export default async function ClientSide() {
   return (
