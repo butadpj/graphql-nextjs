@@ -1,19 +1,17 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import CountryLists from "./components/country-lists";
-import PreloadQuery from "./lib/preload-query";
+import styles from "../page.module.css";
+import CountryLists from "../components/country-lists";
 import Link from "next/link";
-import { countryListsQuery } from "./lib/queries";
+import MutateCountry from "../components/mutate-country";
 import { Suspense } from "react";
+import { getQueryClient } from "../lib/query-client";
+import request from "graphql-request";
+import { countryListsQuery } from "../lib/queries";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import request, { gql } from "graphql-request";
-import LatestCountry from "./components/latest-country";
-import { getQueryClient } from "./lib/query-client";
 
 // export const dynamic = "force-dynamic";
 export const revalidate = 30;
 
-export default async function Home() {
+export default async function Mutation() {
   const queryClient = getQueryClient();
 
   queryClient.prefetchQuery({
@@ -21,10 +19,9 @@ export default async function Home() {
     queryFn: async () =>
       request(`${process.env.NEXT_PUBLIC_HOST}/api/graphql`, countryListsQuery),
   });
-
   return (
     <div className={styles.page}>
-      <Link href={"/mutation"}>Mutation</Link>
+      <Link href={"/"}>Home</Link>
       <main className={styles.main}>
         <div
           style={{
@@ -36,28 +33,9 @@ export default async function Home() {
             maxWidth: "50rem",
           }}
         >
-          <h1 style={{ textAlign: "center" }}>ISR PAGE</h1>
-          <p>revalidate once a request comes in (every 10 seconds)</p>
-          <p>
-            Once revalidated, page is going to be pre-rendered with the latest
-            data{" "}
-            <i>
-              (Open the devtools, and in the Network tab, inspect the response
-              for this document. You'll see that the page is pre-rendered with
-              the latest data)
-            </i>
-          </p>
+          <h1>Mutate the list</h1>
         </div>
-
-        <Suspense
-          fallback={
-            <h1 style={{ textAlign: "center", opacity: "0.5" }}>
-              Fetching latest country...
-            </h1>
-          }
-        >
-          <LatestCountry />
-        </Suspense>
+        <MutateCountry />
 
         <HydrationBoundary state={dehydrate(queryClient)}>
           <Suspense
@@ -80,12 +58,6 @@ export default async function Home() {
             <CountryLists />
           </Suspense>
         </HydrationBoundary>
-
-        {/* <Suspense fallback={"Loading..."}>
-          <PreloadQuery query={countryListsQuery}>
-            {({ data }) => <CountryLists initialData={data} />}
-          </PreloadQuery>
-        </Suspense> */}
       </main>
     </div>
   );

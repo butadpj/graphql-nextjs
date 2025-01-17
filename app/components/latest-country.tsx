@@ -10,9 +10,9 @@ export default async function LatestCountry() {
     }
   );
   const data = await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(client.request(latestCountryQuery));
-    }, 3000);
+    // setTimeout(() => {
+    resolve(client.request(latestCountryQuery));
+    // }, 3000);
   });
 
   return (
