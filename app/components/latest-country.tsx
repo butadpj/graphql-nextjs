@@ -2,6 +2,8 @@ import { GraphQLClient } from "graphql-request";
 import PreloadQuery from "../lib/preload-query";
 import { latestCountryQuery } from "../lib/queries";
 
+export const dynamic = "force-dynamic";
+
 export default async function LatestCountry() {
   const client = new GraphQLClient(
     `${process.env.NEXT_PUBLIC_HOST}/api/graphql`
@@ -10,8 +12,7 @@ export default async function LatestCountry() {
 
   return (
     <h1 style={{ textAlign: "center" }}>
-      Latest country:{" "}
-      {/* @ts-ignore */}
+      Latest country: {/* @ts-ignore */}
       <span key={data?.latest_country?.code}>{data?.latest_country?.name}</span>
     </h1>
   );
