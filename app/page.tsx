@@ -10,8 +10,8 @@ import request, { gql } from "graphql-request";
 import LatestCountry from "./components/latest-country";
 import { getQueryClient } from "./lib/query-client";
 
-// export const dynamic = "force-dynamic";
-export const revalidate = 30;
+export const dynamic = "force-dynamic";
+// export const revalidate = 30;
 
 export default async function Home() {
   const queryClient = getQueryClient();
