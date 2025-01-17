@@ -4,7 +4,7 @@ import { latestCountryQuery } from "../lib/queries";
 
 export default async function LatestCountry() {
   const client = new GraphQLClient(
-    `${process.env.NEXT_PUBLIC_HOST}/api/graphql`,
+    `${process.env.NEXT_PUBLIC_HOST}/graphql`,
     {
       cache: "no-store",
     }

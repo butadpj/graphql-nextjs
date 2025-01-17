@@ -128,7 +128,7 @@ export default function MutateCountry() {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async () =>
-      request(`${process.env.NEXT_PUBLIC_HOST}/api/graphql`, ADD_COUNTRY, {
+      request(`${process.env.NEXT_PUBLIC_HOST}/graphql`, ADD_COUNTRY, {
         code: randomNames[0],
         name: randomNames[0],
       }),

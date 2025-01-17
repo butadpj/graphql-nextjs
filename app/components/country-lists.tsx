@@ -14,7 +14,7 @@ export default function CountryLists({
     queryKey: ["countries"],
     queryFn: async () => {
       return request(
-        `${process.env.NEXT_PUBLIC_HOST}/api/graphql`,
+        `${process.env.NEXT_PUBLIC_HOST}/graphql`,
         countryListsQuery
       );
       // return new Promise((resolve) => {
@@ -22,7 +22,7 @@ export default function CountryLists({
       //     () =>
       //       resolve(
       //         request(
-      //           `${process.env.NEXT_PUBLIC_HOST}/api/graphql`,
+      //           `${process.env.NEXT_PUBLIC_HOST}/graphql`,
       //           countryListsQuery
       //         )
       //       ),

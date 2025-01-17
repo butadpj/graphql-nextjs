@@ -20,7 +20,7 @@ export default async function PreloadQuery({
 }: PreloadQueryProps) {
   // const client = createApolloClient();
   const client = new GraphQLClient(
-    `${process.env.NEXT_PUBLIC_HOST}/api/graphql`
+    `${process.env.NEXT_PUBLIC_HOST}/graphql`
   );
 
   // Fetch data on the server

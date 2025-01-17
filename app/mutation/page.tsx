@@ -17,7 +17,7 @@ export default async function Mutation() {
   queryClient.prefetchQuery({
     queryKey: ["countries"],
     queryFn: async () =>
-      request(`${process.env.NEXT_PUBLIC_HOST}/api/graphql`, countryListsQuery),
+      request(`${process.env.NEXT_PUBLIC_HOST}/graphql`, countryListsQuery),
   });
   return (
     <div className={styles.page}>

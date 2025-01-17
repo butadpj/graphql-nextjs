@@ -19,7 +19,7 @@ export default async function Home() {
   queryClient.prefetchQuery({
     queryKey: ["countries"],
     queryFn: async () =>
-      request(`${process.env.NEXT_PUBLIC_HOST}/api/graphql`, countryListsQuery),
+      request(`${process.env.NEXT_PUBLIC_HOST}/graphql`, countryListsQuery),
   });
 
   return (
