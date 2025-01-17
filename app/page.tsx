@@ -13,7 +13,7 @@ import {
 import request, { gql } from "graphql-request";
 import LatestCountry from "./components/latest-country";
 
-// export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 export const revalidate = 10;
 
 export default async function Home() {

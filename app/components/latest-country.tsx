@@ -2,8 +2,6 @@ import { GraphQLClient } from "graphql-request";
 import PreloadQuery from "../lib/preload-query";
 import { latestCountryQuery } from "../lib/queries";
 
-export const dynamic = "force-dynamic";
-
 export default async function LatestCountry() {
   const client = new GraphQLClient(
     `${process.env.NEXT_PUBLIC_HOST}/api/graphql`
