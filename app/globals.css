@@ -40,3 +40,15 @@ a {
     color-scheme: dark;
   }
 }
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

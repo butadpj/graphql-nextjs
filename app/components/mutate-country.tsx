@@ -119,6 +119,7 @@ function getRandomNames(array: String[], count: number) {
 
   return selectedNames;
 }
+
 export default function MutateCountry() {
   const queryClient = useQueryClient();
 
@@ -137,10 +138,24 @@ export default function MutateCountry() {
   });
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <hr />
-      <h2>MUTATION</h2>
-      <button disabled={isPending} onClick={() => mutate()}>
+    <div
+      style={{
+        textAlign: "center",
+        padding: "1rem",
+        background: "#36ff732c",
+        display: "flex",
+        flexDirection: "column",
+        margin: "0 auto",
+      }}
+    >
+      <h1 style={{ opacity: "0.5" }}>Client-component</h1>
+      <br />
+
+      <button
+        style={{ padding: "0.5rem 1rem", fontSize: "1rem", cursor: "pointer" }}
+        disabled={isPending}
+        onClick={() => mutate()}
+      >
         {!isPending ? "Add country" : "Adding..."}
       </button>
     </div>

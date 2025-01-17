@@ -10,3 +10,11 @@ export const countryListsQuery = gql`
     }
   }
 `;
+export const latestCountryQuery = gql`
+  query GetLatestCountry {
+    latest_country {
+      code
+      name
+    }
+  }
+`;

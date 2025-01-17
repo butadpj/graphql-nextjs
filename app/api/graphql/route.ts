@@ -218,6 +218,7 @@ const typeDefs = gql`
   type Query {
     hello: String
     countries: [Country]
+    latest_country: Country
   }
 
   type Mutation {
@@ -234,11 +235,12 @@ const resolvers = {
   Query: {
     hello: () => "Hello worlds!",
     countries: () => countries,
+    latest_country: () => countries[0],
   },
   Mutation: {
     addCountry(_: any, args: any) {
       const newCountry = { code: args.code, name: args.name };
-      countries = [...countries, newCountry];
+      countries = [newCountry, ...countries];
 
       return newCountry;
     },
