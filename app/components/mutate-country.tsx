@@ -3,7 +3,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import request from "graphql-request";
 import { ADD_COUNTRY } from "../lib/mutations";
-import { revalidateTag } from "next/cache";
 
 const names = [
   "Liam",
@@ -134,7 +133,7 @@ export default function MutateCountry() {
         name: randomNames[0],
       }),
     onSuccess: () => {
-      revalidateTag("latest-country");
+      // revalidateTag("latest-country");
       queryClient.invalidateQueries({ queryKey: ["countries"] });
     },
   });
