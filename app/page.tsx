@@ -13,7 +13,7 @@ import {
 import request, { gql } from "graphql-request";
 import LatestCountry from "./components/latest-country";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 export const revalidate = 10;
 
 export default async function Home() {
@@ -52,7 +52,15 @@ export default async function Home() {
           </p>
         </div>
 
-        <LatestCountry />
+        <Suspense
+          fallback={
+            <h1 style={{ textAlign: "center", opacity: "0.5" }}>
+              Fetching latest country...
+            </h1>
+          }
+        >
+          <LatestCountry />
+        </Suspense>
 
         <HydrationBoundary state={dehydrate(queryClient)}>
           <CountryLists />
