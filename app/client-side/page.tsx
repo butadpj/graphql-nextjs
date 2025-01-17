@@ -4,6 +4,8 @@ import Link from "next/link";
 import MutateCountry from "../components/mutate-country";
 import { Suspense } from "react";
 
+export const dynamic = "force-dynamic";
+
 export default async function ClientSide() {
   return (
     <div className={styles.page}>
