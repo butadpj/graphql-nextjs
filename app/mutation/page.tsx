@@ -8,8 +8,8 @@ import request from "graphql-request";
 import { countryListsQuery } from "../lib/queries";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
-export const dynamic = "force-dynamic";
-// export const revalidate = 30;
+// export const dynamic = "force-dynamic";
+export const revalidate = 30;
 
 export default async function Mutation() {
   const queryClient = getQueryClient();
