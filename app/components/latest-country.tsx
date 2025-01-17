@@ -11,6 +11,7 @@ export default async function LatestCountry() {
   return (
     <h1 style={{ textAlign: "center" }}>
       Latest country:{" "}
+      {/* @ts-ignore */}
       <span key={data?.latest_country?.code}>{data?.latest_country?.name}</span>
     </h1>
   );
