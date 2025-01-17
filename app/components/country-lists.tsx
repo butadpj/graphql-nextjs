@@ -12,19 +12,24 @@ export default function CountryLists({
 }) {
   const { data } = useSuspenseQuery({
     queryKey: ["countries"],
-    queryFn: () =>
-      new Promise((resolve) => {
-        setTimeout(
-          () =>
-            resolve(
-              request(
-                `${process.env.NEXT_PUBLIC_HOST}/api/graphql`,
-                countryListsQuery
-              )
-            ),
-          5000
-        );
-      }),
+    queryFn: async () => {
+      return request(
+        `${process.env.NEXT_PUBLIC_HOST}/api/graphql`,
+        countryListsQuery
+      );
+      // return new Promise((resolve) => {
+      //   setTimeout(
+      //     () =>
+      //       resolve(
+      //         request(
+      //           `${process.env.NEXT_PUBLIC_HOST}/api/graphql`,
+      //           countryListsQuery
+      //         )
+      //       ),
+      //     5000
+      //   );
+      // });
+    },
 
     ...(initialData !== null && { initialData }),
   });

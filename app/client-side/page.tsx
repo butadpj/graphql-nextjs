@@ -4,7 +4,7 @@ import Link from "next/link";
 import MutateCountry from "../components/mutate-country";
 import { Suspense } from "react";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 export default async function ClientSide() {
   return (
