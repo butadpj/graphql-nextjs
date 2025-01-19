@@ -19,6 +19,7 @@ export default async function Mutation() {
     queryFn: async () =>
       request(`${process.env.NEXT_PUBLIC_HOST}/graphql`, countryListsQuery),
   });
+
   return (
     <div className={styles.page}>
       <Link href={"/"}>Home</Link>

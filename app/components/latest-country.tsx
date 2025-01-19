@@ -1,12 +1,32 @@
-import { GraphQLClient } from "graphql-request";
+"use client";
+
+import request, { GraphQLClient } from "graphql-request";
 import PreloadQuery from "../lib/preload-query";
 import { latestCountryQuery } from "../lib/queries";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
-export default async function LatestCountry() {
-  const client = new GraphQLClient(`${process.env.NEXT_PUBLIC_HOST}/graphql`, {
-    cache: "no-store",
+export default function LatestCountry() {
+  const { data } = useSuspenseQuery({
+    queryKey: ["latest-country"],
+    queryFn: async () => {
+      return request(
+        `${process.env.NEXT_PUBLIC_HOST}/graphql`,
+        latestCountryQuery
+      );
+      // return new Promise((resolve) => {
+      //   setTimeout(
+      //     () =>
+      //       resolve(
+      //         request(
+      //           `${process.env.NEXT_PUBLIC_HOST}/graphql`,
+      //           latestCountryQuery
+      //         )
+      //       ),
+      //     5000
+      //   );
+      // });
+    },
   });
-  const data = await client.request(latestCountryQuery);
 
   return (
     <h1 style={{ textAlign: "center" }}>

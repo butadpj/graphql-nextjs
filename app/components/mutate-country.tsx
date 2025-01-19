@@ -135,6 +135,7 @@ export default function MutateCountry() {
     onSuccess: () => {
       // revalidateTag("latest-country");
       queryClient.invalidateQueries({ queryKey: ["countries"] });
+      queryClient.invalidateQueries({ queryKey: ["latest-country"] });
     },
   });
 

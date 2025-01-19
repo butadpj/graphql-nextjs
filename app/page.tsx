@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import CountryLists from "./components/country-lists";
 import PreloadQuery from "./lib/preload-query";
 import Link from "next/link";
-import { countryListsQuery } from "./lib/queries";
+import { countryListsQuery, latestCountryQuery } from "./lib/queries";
 import { Suspense } from "react";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import request, { gql } from "graphql-request";
@@ -20,6 +20,12 @@ export default async function Home() {
     queryKey: ["countries"],
     queryFn: async () =>
       request(`${process.env.NEXT_PUBLIC_HOST}/graphql`, countryListsQuery),
+  });
+
+  queryClient.prefetchQuery({
+    queryKey: ["latest-country"],
+    queryFn: async () =>
+      request(`${process.env.NEXT_PUBLIC_HOST}/graphql`, latestCountryQuery),
   });
 
   return (
@@ -49,17 +55,17 @@ export default async function Home() {
           </p>
         </div>
 
-        <Suspense
-          fallback={
-            <h1 style={{ textAlign: "center", opacity: "0.5" }}>
-              Fetching latest country...
-            </h1>
-          }
-        >
-          <LatestCountry />
-        </Suspense>
-
         <HydrationBoundary state={dehydrate(queryClient)}>
+          <Suspense
+            fallback={
+              <h1 style={{ textAlign: "center", opacity: "0.5" }}>
+                Fetching latest country...
+              </h1>
+            }
+          >
+            <LatestCountry />
+          </Suspense>
+
           <Suspense
             fallback={
               <div
